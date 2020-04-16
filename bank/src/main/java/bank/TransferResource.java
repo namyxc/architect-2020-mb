@@ -22,8 +22,12 @@ public class TransferResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createTransfer(CreateTransferCommand command) {
-        var transfer = transferBean.createTransfer(command);
-        return Response.status(201).entity(transfer).build();
+        try {
+            Transfer transfer = transferBean.createTransfer(command);
+            return Response.status(201).entity(transfer).build();
+        } catch (IllegalCreditException e) {
+            return Response.status(409).build();
+        }
     }
 
 }
