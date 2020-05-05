@@ -120,3 +120,49 @@ tárolni, majd a kliens ettől kérte el a darabkákat
     * Ha verziót akarunk frissíteni, lehet, hogy nem tehetjük, mert be hozzá vagyunk ragadva az alkalmazásszerverben lévő verzióhoz
     * Az alkalmazásszerverben lévő cache-t bonyolultabb konfigurálni, és kevesebb dokumentációt, példát találunk hozzá, mint a különállóhoz
     * A dokumentáció szerint az Infinispan a WildFly belső működéséhez szükséges
+
+## Házi feladat
+
+Hozz létre egy `employees` alkalmazást a `bank` könyvtárban lévőhöz hasonlatosan.
+
+Pár architektúrális módosítást próbálj ki:
+
+* Ne használj EJB-ket (segítség lejjebb)!
+* `@Produces` és `@Consumes` annotációkat csak osztály szinten használj!
+
+Ez azonban egy darab `Employee` entitást tartalmazzon. Ez azonban tartalmazza
+az alkalmazott nevét és anyja nevét is. Azonban külön kell tárolni
+mindkét esetben a kereszt- és vezetéknevet (`forename`, `surename`). A táblában ennek
+négy oszlopnak kell lennie: `employee_forename`, `employee_surename`, `mother_forename`, `mother_surename`.
+
+Hogy oldanád meg, hogy ne legyen copy-paste (segítség lejjebb). _Composite entity_ mint a kulcs.
+
+Az `EmployeeBean` üzleti logika ne entitásokat adjon vissza, hanem DTO-kat. Valamint commandokat is
+várjon paraméterül. Ezt hívja a REST réteg.
+
+```java
+public List<EmployeeDto> listEmployees() {        
+}
+
+public Employee createEmployee(CreateEmployeeCommand command) {
+}
+```
+
+Az `EmployeeDto` felépítése megegyezik az `Employee` osztállyal. A `CreateEmployeeCommand` osztály is megegyezik, azzal a különbséggel, hogy
+nincs `id` attribútuma.
+
+Implementáld a konvertálást entitás és DTO között MapStruct segítségével! (Vigyázz, a `pom.xml`-ben két `annotationProcessorPaths`-t kell felvenned!)
+A `Mapper`-t injektáld (segítség lejjebb)!
+A listát is a `Mapper` konvertálja!
+
+Próbáld ki, hogy amikor az entitás és a DTO is ugyanarra a típusra hivatkozik, akkor ott referencia másolás történik-e, vagy deep copy?
+Amennyiben NEM deep copy, próbáld megoldani! (Segítség lejjebb.)
+
+### Segítségek
+
+* `DbMigrator` esetén egy `init` metódus `@Observes @Initialized( ApplicationScoped.class )` paraméterrel
+* `EmployeeBean` `@SessionBean` helyett `@Named`
+* Vegyél fel egy `Name` osztályt, és legyen `@Embeddable`, és két ilyen típusú attribútum legyen
+az `Employee` osztályban. Használandó az `@Embedded` és `@AttributeOverrides` annotáció.
+* `@Mapper(componentModel = "cdi")`
+* Nem deep copy van, ahhoz fel kell venni egy típusról ugyanarra a típusra mapper metódust.
