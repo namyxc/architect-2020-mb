@@ -7,3 +7,5 @@ feladatból áll.
 [Adatbáziskezelés JDBC és JPA technológiákkal](01-jdbc-jpa.md)
 
 [Perzisztens réteg az architektúrában](02-perzisztencia.md)
+
+[Modularizáció](03-modularizacio.md)

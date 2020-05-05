@@ -41,15 +41,15 @@
     * Mire való a `getReference`?
     * Mi történik, ha két kapcsolódó entitás van és mind a kettőt join fetch-csel töltünk be? https://www.jtechlog.hu/2013/03/17/jpa-tobb-one-to-many-kapcsolat.html
 
-![Relációk](jpa-relations.png)
+![Relációk](images/jpa-relations.png)
 
-![Descartes](jpa-descartes.png)
+![Descartes](images/jpa-descartes.png)
 
 * Tranzakciókezelés (tranzakció határok, propagáció, `REQUIRES`, `REQUIRES_NEW`), ajánlott olvasmány: https://www.jtechlog.hu/2010/05/31/tranzakciokezeles.html
 
-![Tranzakciókezelés](jpa-transaction.png)
+![Tranzakciókezelés](images/jpa-transaction.png)
 
-![Commit/rollback](jpa-commit-rollback.png)
+![Commit/rollback](images/jpa-commit-rollback.png)
 
 ![Transaction attribute](https://examples.javacodegeeks.com/wp-content/uploads/2015/04/CMT1.jpg.webp)
 
