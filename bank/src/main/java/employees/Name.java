@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 @Embeddable
 public class Name implements Serializable {
-    private  String forename;
-    private  String surename;
+    public String forename;
+    public String surename;
 
     public Name(String forename, String surename) {
         this.forename = forename;

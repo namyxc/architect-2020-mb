@@ -18,7 +18,7 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
 
 
@@ -27,12 +27,12 @@ public class Employee {
             @AttributeOverride(name = "forename", column = @Column(name = "employee_forename")),
             @AttributeOverride(name = "surename", column = @Column(name = "employee_surename"))
     })
-    private Name name;
+    public Name name;
 
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "forename", column = @Column(name = "mother_forename")),
             @AttributeOverride(name = "surename", column = @Column(name = "mother_surename"))
     })
-    private Name mother;
+    public Name mother;
 }

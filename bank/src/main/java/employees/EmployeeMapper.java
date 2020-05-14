@@ -8,4 +8,5 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "cdi")
 public interface EmployeeMapper {
     EmployeeDto employeeToEmployeeDto(Employee employee);
+    Employee createEmployeeCommandToEmployee(CreateEmployeeCommand createEmployeeCommand);
 }

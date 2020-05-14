@@ -8,8 +8,8 @@ import javax.inject.Named;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Stateless
 @Named
+@Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class EmployeeBean {
 
@@ -18,8 +18,6 @@ public class EmployeeBean {
 
     @Inject
     private EmployeeMapper employeeMapper;
-    @Inject
-    private NameMapper nameMapper;
 
     public List<EmployeeDto> listEmployees() {
         return employeeRepository.findAll().stream()
@@ -27,9 +25,7 @@ public class EmployeeBean {
                 .collect(Collectors.toList()); }
 
     public EmployeeDto createEmployee(CreateEmployeeCommand command) {
-        var employee = new Employee();
-        employee.setName(nameMapper.nameDtoToName(command.getName()));
-        employee.setMother(nameMapper.nameDtoToName(command.getMother()));
+        var employee = employeeMapper.createEmployeeCommandToEmployee(command);
 
         var created = employeeRepository.save(employee);
         return employeeMapper.employeeToEmployeeDto(created);
