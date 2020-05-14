@@ -1,16 +1,12 @@
 package employees;
 
-import javax.ejb.Stateless;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Named
-@Stateless
-@TransactionManagement(TransactionManagementType.CONTAINER)
 public class EmployeeBean {
 
     @Inject
@@ -22,8 +18,10 @@ public class EmployeeBean {
     public List<EmployeeDto> listEmployees() {
         return employeeRepository.findAll().stream()
                 .map(employeeMapper::employeeToEmployeeDto)
-                .collect(Collectors.toList()); }
+                .collect(Collectors.toList());
+    }
 
+    @Transactional
     public EmployeeDto createEmployee(CreateEmployeeCommand command) {
         var employee = employeeMapper.createEmployeeCommandToEmployee(command);
 
