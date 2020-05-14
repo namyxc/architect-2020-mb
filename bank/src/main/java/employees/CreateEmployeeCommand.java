@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class CreateEmployeeCommand {
-    private NameDto name;
-    private NameDto mother;
+    private Name name;
+    private Name mother;
 }

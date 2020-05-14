@@ -9,4 +9,5 @@ import org.mapstruct.factory.Mappers;
 public interface EmployeeMapper {
     EmployeeDto employeeToEmployeeDto(Employee employee);
     Employee createEmployeeCommandToEmployee(CreateEmployeeCommand createEmployeeCommand);
+    Name nameToName(Name name);
 }

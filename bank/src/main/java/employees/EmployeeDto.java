@@ -7,6 +7,6 @@ public class EmployeeDto {
 
     private Long id;
 
-    private NameDto name;
-    private NameDto mother;
+    private Name name;
+    private Name mother;
 }
