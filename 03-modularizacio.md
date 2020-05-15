@@ -8,8 +8,8 @@
 ## Clean architecture
 
 * Objektumorientált alapelveket alkalmazza magasabb absztrakciós szinten (modul, vagy az ő szóhasználatában komponens)
-	  * Az alapelveket, a döntések miértjét mindenképpen érdemes ismerni
-		* A választott megoldás nem elterjedt, a klasszikus 3-rétegű architektúrához képest
+	* Az alapelveket, a döntések miértjét mindenképpen érdemes ismerni
+	* A választott megoldás nem elterjedt, a klasszikus 3-rétegű architektúrához képest
 			szignifikáns eltérés van
 
 ### Architektúra fogalma
